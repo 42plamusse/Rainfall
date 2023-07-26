@@ -19,8 +19,8 @@ int main(int argc, char **argv)
 
         uid = geteuid();
         gid = getegid();
-        setreuid(uid, uid); // setresuid not working on my device
-        setregid(gid, gid); // same
+        setresuid(uid, uid);
+        setresgid(gid, gid);
 
         execv("/bin/sh", execv_args);
     }
