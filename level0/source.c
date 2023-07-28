@@ -26,4 +26,6 @@ int main(int argc, char **argv)
     }
     else
         fwrite("No !\n", 5, 1, stderr);
+
+    return (0);
 }
