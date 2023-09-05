@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     if (argc <= 1)
         return 1;
 
-    N n1(5); // 0x804a008
+    N n1(5); // 0x0804a008
     N n2(6); // 0x0804a078
 
     n1.setAnnotation(argv[1]); // 0x804a00c
