@@ -4,7 +4,7 @@ define all
    echo \n
    i r
    echo \n
-   x/100wx $esp
+   x/64wx $esp
 end
 
 define nall
@@ -22,7 +22,7 @@ define all
    echo \n
    i r
    echo \n
-   x/100wx $rsp
+   x/64wx $rsp
 end
 
 define nall
