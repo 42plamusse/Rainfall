@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *auth;
-char *service;
+char **auth;
+char **service;
 
 int main(void)
 {
@@ -17,24 +17,24 @@ int main(void)
 
         if (!memcmp(buffer, "auth ", 0x5))
         {
-            auth = (char *)malloc(0x4);
-            *auth = NULL;
+            *auth = (char *)malloc(0x4);
+            **auth = '\0';
             if (strlen(buffer) <= 0x1e)
             {
-                strcpy(auth, buffer + 0x5);
+                strcpy(*auth, buffer + 0x5);
             }
         }
         if (!memcmp(buffer, "reset", 0x5))
         {
-            free(buffer);
+            free(*auth);
         }
         if (!memcmp(buffer, "service", 0x7))
         {
-            strcpy(service, buffer + 0x7);
+            strcpy(*service, buffer + 0x7);
         }
         if (!memcmp(buffer, "login", 0x5))
         {
-            if (auth[0x20] != NULL)
+            if (*auth[0x20] != '\0')
                 system("/bin/sh");
             else
                 fwrite("Password:\n", 1, 0xA, stdout);
